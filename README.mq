@@ -1,11 +1,11 @@
-# Descrição
+#Descrição
 
 O seguinte projeto foi implementado utilizando as tecnologias Angular no frontend e .netCore C# no backend.
 O banco de dados utilizado foi o SQL Server.
 
-# Instalação
+#Instalação
 
-## Frontend
+##Frontend
 
 Deve-se instalar as ferramentas necessárias para executar aplicações em Angular.
 Deverão ser instaladas as seguintes aplicações:
@@ -23,7 +23,7 @@ diretório Fron-end/usersproject:
 
 ng serve
 
-## Backend
+##Backend
 
 A aplicação de backend utilizou as seguintes tecnologias com as seguintes versões
 
