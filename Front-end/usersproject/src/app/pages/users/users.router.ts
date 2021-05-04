@@ -6,7 +6,7 @@ import { ListUsersComponent } from './list-users/list-users.component'
 import { UsuarioResolve } from './user.resolve'
 
 /**
- * Configuração de rotas de Pedido.
+ * Configuração de rotas de Usuario.
  */
 export const UserRoutes: Routes = [
     {

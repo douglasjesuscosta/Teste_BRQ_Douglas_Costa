@@ -7,6 +7,10 @@ import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap'
 
 import { UsuarioClientService } from '../users-client.service'
 
+/**
+ * Component responsable to insert or update User/Usuario.
+ */
+
 @Component({
     selector: 'app-user-form',
     templateUrl: './user-form.component.html',
@@ -23,12 +27,12 @@ export class UserFormComponent implements OnInit {
     @ViewChild('modal', { static: true }) modal: ElementRef
 
     constructor(
-        private formBuilder: FormBuilder,
-        private userService: UsuarioClientService,
+        private router: Router,
         private modalService: NgbModal,
         private config: NgbModalConfig,
         private route: ActivatedRoute,
-        private router: Router
+        private formBuilder: FormBuilder,
+        private userService: UsuarioClientService
     ) {
         this.initializeValues(config)
 
@@ -145,18 +149,30 @@ export class UserFormComponent implements OnInit {
         )
     }
 
+    /**
+     * Method to show success feedback.
+     *
+     * @param value
+     */
     public showSuccessFeedback(value) {
         this.isLoading = false
         this.isSaved = true
         this.openSuccessModal()
     }
 
+    /**
+     * Method to show error feedback.
+     * @param error
+     */
     private showErrorFeedback(error) {
         this.isLoading = false
         this.isSaved = false
         this.openFailuerModal()
     }
 
+    /**
+     * Method to open success modal.
+     */
     private openSuccessModal() {
         this.modalService.open(this.modal, { ariaLabelledBy: 'modal-basic-title' }).result.then(
             (result) => {
@@ -168,6 +184,10 @@ export class UserFormComponent implements OnInit {
         )
     }
 
+    /**
+     * Method to open the model after fail request.
+     *
+     */
     private openFailuerModal() {
         this.modalService.open(this.modal, { ariaLabelledBy: 'modal-basic-title' }).result.then(
             (result) => {},
@@ -175,11 +195,9 @@ export class UserFormComponent implements OnInit {
         )
     }
 
-    private fromJsonDate(jDate): string {
-        const bDate: Date = new Date(jDate)
-        return bDate.toISOString().substring(0, 10)
-    }
-
+    /**
+     * Method to redirect to list page.
+     */
     public back() {
         this.router.navigate([`users/`])
     }

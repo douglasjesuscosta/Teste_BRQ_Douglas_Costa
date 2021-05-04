@@ -6,7 +6,7 @@ import { User } from 'src/app/model/User'
 import { environment } from 'src/environments/environment'
 
 /**
- * Classe de integração com o serviço de Usuario.
+ * Class that represents the integration with User client.
  */
 @Injectable({
     providedIn: 'root',
@@ -15,14 +15,14 @@ export class UsuarioClientService {
     private endpointName: String = 'User'
 
     /**
-     * Construtor da classe.
+     * Class Builder.
      *
      * @param http
      */
     constructor(private http: HttpClient) {}
 
     /**
-     * Salva a instância de Usuario.
+     * Sends a request to insert a user.
      *
      * @param user
      * @return
@@ -36,7 +36,7 @@ export class UsuarioClientService {
     }
 
     /**
-     * Atualiza a instância de Usuario.
+     * Sends a request to update a User instance.
      *
      * @param user
      * @return
@@ -50,21 +50,21 @@ export class UsuarioClientService {
     }
 
     /**
-     * Retorna o array de Usuarios.
+     * Returns a list  of users;
      */
     public getUsuarios(): Observable<any> {
         return this.http.get(`${environment.urlGatewayService}/${this.endpointName}/`)
     }
 
     /**
-     * Retorna o Usuario a partir do ID.
+     * Returns a user based on a given id.
      */
     public getUsuario(id: string): Observable<any> {
         return this.http.get(`${environment.urlGatewayService}/${this.endpointName}/${id}`)
     }
 
     /**
-     * Exclui a instância de Usuario.
+     *  Sends a request to delete an user.
      *
      * @param user
      * @return

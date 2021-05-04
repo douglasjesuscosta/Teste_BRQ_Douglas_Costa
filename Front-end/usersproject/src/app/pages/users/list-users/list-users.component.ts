@@ -6,6 +6,10 @@ import { ActivatedRoute, Router } from '@angular/router'
 
 import { UsuarioClientService } from '../users-client.service'
 
+/**
+ *  Class that represents a component to list the users.
+ *
+ */
 @Component({
     selector: 'app-list-users',
     templateUrl: './list-users.component.html',
@@ -26,14 +30,32 @@ export class ListUsersComponent implements OnInit {
 
     ngOnInit(): void {}
 
+    /**
+     * Method that redirects to edit page.
+     *
+     * @param user
+     *
+     */
     public editUser(user) {
         this.router.navigate([`users/create/${user.id}`])
     }
 
+    /**
+     * Method that start the delete action, calling the confirmation modal.
+     *
+     * @param user
+     *
+     */
     public deleteUserButtonClick(user) {
         this.openConfirmationModal(user)
     }
 
+    /**
+     * Method that opens and control the confirmation modal.
+     *
+     * @param user
+     *
+     */
     private openConfirmationModal(user) {
         this.modalService.open(this.modalConfirmation, { ariaLabelledBy: 'modal-basic-title' }).result.then(
             (result) => {
@@ -46,6 +68,12 @@ export class ListUsersComponent implements OnInit {
         )
     }
 
+    /**
+     * Method that continues the exclusion action. It passes the user to start the request to delete user.
+     *
+     * @param user
+     *
+     */
     private continueUserExclusion(user) {
         this.userService.delete(user).subscribe(
             () => {
@@ -57,6 +85,10 @@ export class ListUsersComponent implements OnInit {
         )
     }
 
+    /**
+     *  Method that update the user list after exclusion.
+     *
+     */
     private refreshListAfterExclusion() {
         this.userService.getUsuarios().subscribe(
             (users) => {
