@@ -1,12 +1,10 @@
 import { ElementRef } from '@angular/core'
 import { ViewChild } from '@angular/core'
-import { ActivatedRoute, Router } from '@angular/router'
 import { Component, OnInit } from '@angular/core'
-import { FormBuilder, FormGroup } from '@angular/forms'
-import { formatDate } from '@angular/common'
+import { ActivatedRoute, Router } from '@angular/router'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap'
 
-import { User } from 'src/app/model/User'
 import { UsuarioClientService } from '../users-client.service'
 
 @Component({
@@ -17,9 +15,10 @@ import { UsuarioClientService } from '../users-client.service'
 export class UserFormComponent implements OnInit {
     public user
     public userForm: FormGroup
-    public isLoading: boolean
     public isSaved: boolean
     public isUpdate: boolean
+    public isLoading: boolean
+    public isSubmitted: boolean
 
     @ViewChild('modal', { static: true }) modal: ElementRef
 
@@ -40,31 +39,57 @@ export class UserFormComponent implements OnInit {
         this.createForm(this.user)
     }
 
+    /**
+     * Method to initialize values.
+     * @param config
+     */
     private initializeValues(config: NgbModalConfig) {
         this.isLoading = false
         this.isSaved = false
         config.backdrop = 'static'
         config.keyboard = false
+        this.isSubmitted = false
     }
 
     ngOnInit(): void {}
 
     /**
-     * Method to initialize the form
-     *
+     * Method to initialize the form.
      */
     createForm(user) {
         //let formattedBirthday = user !== null ? new Date(user.birthday) : null
 
         this.userForm = this.formBuilder.group({
             id: [user !== null ? user.id : null],
-            name: [user !== null ? user.name : null],
-            cpf: [user !== null ? user.cpf : null],
-            email: [user !== null ? user.email : null],
-            telephone: [user !== null ? user.telephone : null],
-            sex: [user !== null ? user.sex : null],
-            birthday: [user !== null ? user.birthday : null],
+            name: [user !== null ? user.name : null, Validators.required],
+            cpf: [user !== null ? user.cpf : null, Validators.required],
+            email: [user !== null ? user.email : null, Validators.required],
+            telephone: [user !== null ? user.telephone : null, Validators.required],
+            sex: [user !== null ? user.sex : null, Validators.required],
+            birthday: [user !== null ? user.birthday : null, Validators.required],
         })
+    }
+
+    /**
+     * Getters of form fields for validation.
+     */
+    get nameInput() {
+        return this.userForm.get('name')
+    }
+    get cpfInput() {
+        return this.userForm.get('cpf')
+    }
+    get emailInput() {
+        return this.userForm.get('email')
+    }
+    get telephoneInput() {
+        return this.userForm.get('telephone')
+    }
+    get sexInput() {
+        return this.userForm.get('sex')
+    }
+    get birthdayInput() {
+        return this.userForm.get('birthday')
     }
 
     /**
@@ -72,13 +97,18 @@ export class UserFormComponent implements OnInit {
      *
      * */
     public saveUser(): void {
-        this.isLoading = true
-        let userObject = this.userForm.value
+        this.isSubmitted = true
 
-        if (this.isUpdate) {
-            this.updateUser(userObject)
-        } else {
-            this.persistUser(userObject)
+        console.log(this.userForm.status)
+        if (this.userForm.valid) {
+            this.isLoading = true
+            let userObject = this.userForm.value
+
+            if (this.isUpdate) {
+                this.updateUser(userObject)
+            } else {
+                this.persistUser(userObject)
+            }
         }
     }
 
@@ -148,5 +178,9 @@ export class UserFormComponent implements OnInit {
     private fromJsonDate(jDate): string {
         const bDate: Date = new Date(jDate)
         return bDate.toISOString().substring(0, 10)
+    }
+
+    public back() {
+        this.router.navigate([`users/`])
     }
 }
