@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace UsersProject.DTO
 {
+    //Class that represents an Data transfer object to User model.
     public class UsuarioDTO
     {
         public string id { get; set; }

@@ -11,6 +11,7 @@ using UsersProject.DTO;
 
 namespace UsersProject.Controllers
 {
+    //User Controller
     [ApiController]
     [Route("[controller]")]
     public class UserController : ControllerBase
@@ -26,18 +27,21 @@ namespace UsersProject.Controllers
             _userService = userService;
         }
 
+        //Endpoint to create an user.
         [HttpPost]
         public UsuarioDTO CreateUser(UsuarioDTO userDTO)
         {
             return _userService.CreateUser(userDTO);
         }
 
+        //Endpoint to update a given User.
         [HttpPut]
         public void UpdateUser(UsuarioDTO userDTO)
         {
             _userService.UpdateUser(userDTO);
         }
 
+        //Endpoint to get an user based on a given id.
         [HttpGet("{idUser}")]
         public UsuarioDTO GetUser(String idUser)
         {
@@ -45,6 +49,7 @@ namespace UsersProject.Controllers
         }
 
 
+        //Endpoint to get all the users.
         [HttpGet]
         public async Task<IEnumerable<UsuarioDTO>> GetAllUsers()
         {
@@ -53,6 +58,7 @@ namespace UsersProject.Controllers
             
         }
 
+        //Endpoint to delete an User.
         [HttpDelete("{idUser}")]
         public void DeleteUser(String idUser)
         {

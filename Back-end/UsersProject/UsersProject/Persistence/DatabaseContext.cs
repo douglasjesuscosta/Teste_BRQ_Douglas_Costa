@@ -8,6 +8,7 @@ using UsersProject.Model;
 
 namespace UsersProject.Persistence
 {
+    //Class that represents the Database Context.
     public class DatabaseContext : DbContext
     {
         public DatabaseContext(DbContextOptions options) : base(options)

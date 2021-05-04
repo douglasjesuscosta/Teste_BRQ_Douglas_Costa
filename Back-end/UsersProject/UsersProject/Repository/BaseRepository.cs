@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 using UsersProject.Persistence;
 
 namespace UsersProject.Repository
-{
+{ 
+    //Class that represents a general repository. 
     public class BaseRepository
     {
         protected readonly DatabaseContext _databaseContext;

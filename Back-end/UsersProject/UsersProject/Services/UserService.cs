@@ -1,6 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+
 using UsersProject.DTO;
 using UsersProject.Model;
 using UsersProject.RepositoryInterface;
@@ -8,6 +9,7 @@ using UsersProject.ServicesInterfaces;
 
 namespace UsersProject.Business
 {
+    //Class that implements the business logic related to User operations.
     public class  UserService : IUserService
     {
 
@@ -55,14 +57,14 @@ namespace UsersProject.Business
             return usuarioDTO;
         }
 
-        //Method to update Usuario
+        //Method to update an User.
         public void UpdateUser(UsuarioDTO usuarioDTO)
         {
             Usuario usuario = ConvertFromDTO(usuarioDTO);
             _userRepository.Update(usuario);
         }
 
-        //Method to delete a given Usuario.
+        //Method to delete a given User.
         public void DeleteUser(String idUser)
         {
             Usuario usuario = new Usuario();
@@ -70,7 +72,7 @@ namespace UsersProject.Business
             _userRepository.Remove(usuario);
         }
 
-        //Method to convert Usuario to UsuarioDTO.
+        //Method to convert an Usuario to UsuarioDTO.
         private UsuarioDTO ConvertToDTO(Usuario user)
         {
             UsuarioDTO usuarioDTO = new UsuarioDTO();
@@ -86,7 +88,7 @@ namespace UsersProject.Business
             return usuarioDTO;
         }
 
-        //Method to convert UsuarioDTO to Usuario
+        //Method to convert an UsuarioDTO to Usuario
         private Usuario ConvertFromDTO(UsuarioDTO userDTO)
         {
             Usuario usuario = new Usuario();
