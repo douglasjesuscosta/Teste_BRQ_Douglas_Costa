@@ -1,0 +1,47 @@
+# Descrição
+
+O seguinte projeto foi implementado utilizando as tecnologias Angular no frontend e .netCore C# no backend.
+O banco de dados utilizado foi o SQL Server.
+
+# Instalação
+
+## Frontend
+
+Deve-se instalar as ferramentas necessárias para executar aplicações em Angular.
+Deverão ser instaladas as seguintes aplicações:
+
+ - Node v14.15.5 (Versão utilizada)
+ - Angular 11 (Versão utilizada) (npm install -g @angular/cli)
+
+Para executar a aplicação de frontend, deve-se executar o seguinte comando para 
+instalação das dependências:
+
+npm install
+
+Após isso, para executar a aplicação deve-se executar o seguinte comando no 
+diretório Fron-end/usersproject:
+
+ng serve
+
+## Backend
+
+A aplicação de backend utilizou as seguintes tecnologias com as seguintes versões
+
+Dotnet 5.0.202
+Sql Server Community v13.0.4001
+
+Após instalar as aplicações acima, deve-se criar um banco de dados com o seguinte nome:
+
+"UserDatabase"
+
+Para executar a aplicação torna-se necessário executar o comando abaixo:
+
+dotnet watch run
+
+O comando deve ser executado no seguinte diretório:
+
+Back-end\UsersProject\UsersProject 
+
+
+Cordialmente,
+Douglas Costa
